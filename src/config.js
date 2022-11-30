@@ -22,7 +22,7 @@ const config = {
         server: {
             host: 'https://caml-frontend.azurewebsites.net/',
             docker: 'https://caml-docker.azurewebsites.net/',
-            bento: 'https://caml-bento.azurewebsites.net/',
+            bento: 'https://caml-bento.azurewebsites.net/predict',
         },
 
 
