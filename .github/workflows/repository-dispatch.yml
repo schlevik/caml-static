@@ -12,11 +12,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Notify Frontend of new release
+      - name: Fetch new model from releases
         shell: bash -l {0}
         run: |
           echo ${{github.event.client_payload.url}}
           wget ${{github.event.client_payload.url}} -O public/caml.onnx
+          wget ${{github.event.client_payload.url_dicts}} -O public/dicts.onnx
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
