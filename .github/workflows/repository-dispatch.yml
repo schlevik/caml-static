@@ -17,8 +17,8 @@ jobs:
         run: |
           echo ${{github.event.client_payload.url}}
           wget ${{github.event.client_payload.url}} -O public/caml.onnx
-          wget ${{github.event.client_payload.url_dicts}} -O public/dicts.onnx
-          echo ${{github.event.client_payload.version}} > public/version.txt
+          wget ${{github.event.client_payload.url_dicts}} -O public/dicts.json
+          echo "${{github.event.client_payload.version}}" > public/version.json
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
