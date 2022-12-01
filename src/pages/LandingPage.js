@@ -47,6 +47,7 @@ const LandingPage = (props) => {
   const [startTime, setStartTime] = useState()
   const [finishTime, setFinishTime] = useState()
 
+  const [version, setVersion] = useState("loading...")
 
 
   const [bentoPredictions, setBentoPredictions] = useState()
@@ -194,6 +195,14 @@ const LandingPage = (props) => {
       })
   }
 
+  const fetchVersion = () => {
+    fetch('version.json').then(async function (response) {
+      console.log(response)
+      var text = await response.json()
+      console.log(text)
+      setVersion(text);
+    })
+  }
 
   const handleChange = (value) => {
     //setButtonOneVisible(true)
@@ -214,6 +223,7 @@ const LandingPage = (props) => {
   }
 
   React.useEffect(() => loadLocalModel(), [])
+  React.useEffect(() => fetchVersion(), [])
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -222,6 +232,7 @@ const LandingPage = (props) => {
           <Container fixed style={{ border: "solid 1px black", padding: 50, borderRadius: "15px", margin: "20px" }}>
             <div style={{ textAlign: "center" }}>
               <Typography variant="h4" gutterBottom component="div">Med Code Prediction</Typography>
+              {version}
               <br /><br />
 
               <Grid container>
